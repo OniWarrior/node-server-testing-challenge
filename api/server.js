@@ -12,11 +12,22 @@ server.get("/", (req, res) => {
 
 
 server.post("/characters", async (req, res) => {
-  res.status(201).json(await Characters.insert(req.body))
+    try{
+        res.status(201).json(await Characters.insert(req.body))
+
+    }catch(error){
+        next(error)
+    }
+  
 });
 
-server.delete("/characters/:id", (req, res) => {
-  res.end()
+server.delete("/characters/:id",async (req, res) => {
+    try{
+        res.status(200).json(await Characters.remove(req.params.id))        
+
+    }catch(error){
+        next(error)
+    }
 });
 
 
