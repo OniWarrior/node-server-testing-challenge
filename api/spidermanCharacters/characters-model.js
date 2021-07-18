@@ -10,7 +10,7 @@ module.exports = {
   
   
   function getById(id) {
-    return db('characters').where({ id })
+    return db('characters').where('character_id',id)
       .first()
   }
   
@@ -24,5 +24,7 @@ module.exports = {
   
   
   function remove(id) {
+      
     return db('characters').where('character_id', id).del()
+    
   }
